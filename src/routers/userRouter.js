@@ -11,5 +11,5 @@ router.post('/auth/register', registerUser);
 // router.patch('/users/me', authMiddleware, changeUsersPassword);
 
 module.exports = {
-    usersRouter: router
+    userRouter: router
 };

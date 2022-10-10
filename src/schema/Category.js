@@ -1,7 +1,7 @@
 class Category{
     constructor(categoryName){
         this.categoryName=categoryName;
-        this.id=new Symbol(categoryName);
+        this.id=1;
     }
 }
 module.exports ={

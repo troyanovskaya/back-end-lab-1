@@ -1,19 +1,19 @@
-const {User}=require('../schema/User.js');
+const {Category}=require('../schema/Category.js');
 // const jwt=require('jsonwebtoken');
 // const bcryptjs=require('bcryptjs');
 
-function registerUser(req, res, next){
+function createCategory(req, res, next){
 
     try{
-        const {login}=req.body;
-        if(login){
-            const user=new User(login);
-            res.status(200).send({"message": "success", "user": user });
+        const {categoryName}=req.body;
+        if(categoryName){
+            const category=new Category(categoryName);
+            res.status(200).send({"message": "success", "category": category });
         }else{
-            res.status(400).json({"message": "bad request"});
+            res.status(400).json({"message": "bad1 request"});
         }        
     }catch(e){
-        res.status(500).send({"message": "eternal server error"});
+        res.status(500).send({"message": "eternal2 server error"});
     }
     
 }
@@ -79,7 +79,7 @@ function registerUser(req, res, next){
 // }
 
 module.exports = {
-    registerUser
+    createCategory
     // loginUser,
     // getUsersInfo,
     // deleteUser,
