@@ -5,11 +5,13 @@ const app = express();
 
 const {userRouter } = require('./routers/userRouter.js');
 const {categoryRouter} = require('./routers/categoryRouter.js');
+const {noteRouter} = require('./routers/noteRouter.js');
 
 app.use(express.json());
 app.use(morgan('tiny'));
 app.use('/api/users', userRouter);
 app.use('/api/users', categoryRouter);
+app.use('/api/users', noteRouter);
 
 const start = async () => {
   try {
