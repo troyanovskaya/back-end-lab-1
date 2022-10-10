@@ -31,19 +31,20 @@ function createCategory(req, res, next){
 //         res.status(500).send({"message": "eternal server error"});
 //     }
 // }
-// async function getUsersInfo(req, res, next){
-//     try{
-//       const user=await User.findById(req.user.userId);
-//       if(user){
-//         res.status(200).json({user:{"_id": user._id, "username":user.username, "creationDate":user.date}});
-//       }else{
-//         res.status(400).send({"message": "bad request"});
-//       }
+async function getCategoryList(req, res, next){
+    try{
+      let categoryList=[{'id':1, 'categoryName': 'Entertainment'}, {'id':2, 'categoryName': 'Medicine'}, {'id':3, 'categoryName': 'Education'}];
+      let names=categoryList.map(el=>el.categoryName)
+      if(names){
+        res.status(200).send({"categoryNames": names});
+      }else{
+        res.status(400).send({"message": "bad request"});
+      }
       
-//     }catch(e){
-//         res.status(500).send({"message": "eternal server error"});
-//     }    
-// }
+    }catch(e){
+        res.status(500).send({"message": "eternal server error"});
+    }    
+}
 
 // async function deleteUser(req, res, next){
 //     try{
@@ -79,7 +80,8 @@ function createCategory(req, res, next){
 // }
 
 module.exports = {
-    createCategory
+    createCategory,
+    getCategoryList
     // loginUser,
     // getUsersInfo,
     // deleteUser,

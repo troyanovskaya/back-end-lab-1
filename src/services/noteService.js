@@ -31,19 +31,31 @@ function createNote(req, res, next){
 //         res.status(500).send({"message": "eternal server error"});
 //     }
 // }
-// async function getUsersInfo(req, res, next){
-//     try{
-//       const user=await User.findById(req.user.userId);
-//       if(user){
-//         res.status(200).json({user:{"_id": user._id, "username":user.username, "creationDate":user.date}});
-//       }else{
-//         res.status(400).send({"message": "bad request"});
-//       }
+function getCreatedNotes(req, res, next){
+    try{
+        // this.id=1;
+        // this.idUser=user.id;
+        // this.idCategory=category.id;
+        // this.date=new Date();
+        // this.sum=sum;
+        let userId=2;
+      let note1={'id':1, 'idUser':1, 'idCategory':1, 'date': new Date(), 'sum':123};
+      let note2={'id':2, 'idUser':2, 'idCategory':4, 'date': new Date(), 'sum':876};
+      let note3={'id':3, 'idUser':3, 'idCategory':3, 'date': new Date(), 'sum':76};
+      let note4={'id':4, 'idUser':2, 'idCategory':3, 'date': new Date(), 'sum':15};
+      let note5={'id':5, 'idUser':2, 'idCategory':1, 'date': new Date(), 'sum':1023};
+      const notes=[note1, note2, note3, note4, note5];
+      const filteredNotes=notes.filter(el=>el.idUser===userId);
+      if(notes){
+        res.status(200).send({"notes": filteredNotes});
+      }else{
+        res.status(400).send({"message": "bad request"});
+      }
       
-//     }catch(e){
-//         res.status(500).send({"message": "eternal server error"});
-//     }    
-// }
+    }catch(e){
+        res.status(500).send({"message": "eternal server error"});
+    }    
+}
 
 // async function deleteUser(req, res, next){
 //     try{
@@ -79,7 +91,8 @@ function createNote(req, res, next){
 // }
 
 module.exports = {
-    createNote
+    createNote,
+    getCreatedNotes
     // loginUser,
     // getUsersInfo,
     // deleteUser,
