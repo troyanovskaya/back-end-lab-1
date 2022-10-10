@@ -7,9 +7,6 @@
     "nodemon": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "engines":{
-    "node":"14.X"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/troyanovskaya/back-end-lab-1.git"
