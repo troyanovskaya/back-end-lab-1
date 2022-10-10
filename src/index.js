@@ -15,7 +15,7 @@ app.use('/api/users', noteRouter);
 
 const start = async () => {
   try {
-    app.listen(port);
+    app.listen(process.env.PORT || port);
   } catch (err) {
     console.error(`Error on server startup: ${err.message}`);
   }
