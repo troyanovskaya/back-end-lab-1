@@ -1,14 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const { createNote, getCreatedNotes} = require('../services/noteService.js');
-// // const {authMiddleware}=require('./middleware/authMiddleware.js');
-
+const { createNote, getCreatedNotes, getNotesByCategory} = require('../services/noteService.js');
 
 router.post('/me/note', createNote);
-// // router.post('/auth/login', loginUser);
 router.get('/me/notes', getCreatedNotes);
-// // router.delete('/users/me', authMiddleware, deleteUser);
-// // router.patch('/users/me', authMiddleware, changeUsersPassword);
+router.get('/me/notes/category/:categoryId', getNotesByCategory);
 
 module.exports = {
     noteRouter: router
