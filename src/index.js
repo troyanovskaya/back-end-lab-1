@@ -12,7 +12,6 @@ app.use(morgan('tiny'));
 app.use('/api/users', userRouter);
 app.use('/api/users', categoryRouter);
 app.use('/api/users', noteRouter);
-
 const start = async () => {
   try {
     app.listen(process.env.PORT || port);
@@ -20,13 +19,12 @@ const start = async () => {
     console.error(`Error on server startup: ${err.message}`);
   }
 }
-
 start();
 
 //ERROR HANDLER
 app.use(errorHandler)
 
-function errorHandler (err, req, res, next) {
+function errorHandler (err, req, res) {
   console.error('err')
   res.status(500).send({'message': 'Server error'});
 }
