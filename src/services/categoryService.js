@@ -1,11 +1,12 @@
 const {Category}=require('../schema/Category.js');
 
-function createCategory(req, res, next){
+async function createCategory(req, res, next){
 
     try{
         const {categoryName}=req.body;
         if(categoryName){
-            const category=new Category(categoryName);
+            const category=await new Category({categoryName});
+            category.save();
             res.status(200).send({"message": "success", "category": category });
         }else{
             res.status(400).json({"message": "bad1 request"});
@@ -16,12 +17,14 @@ function createCategory(req, res, next){
     
 }
 
-function getCategoryList(req, res, next){
+async function getCategoryList(req, res, next){
     try{
-      let categoryList=[{'id':1, 'categoryName': 'Entertainment'}, {'id':2, 'categoryName': 'Medicine'}, {'id':3, 'categoryName': 'Education'}];
-      let names=categoryList.map(el=>el.categoryName)
-      if(names){
-        res.status(200).send({"categoryNames": names});
+      const categories = await Category.find({});
+      const categoryNames = categories.map(el => el.categoryName);
+
+      console.log(categoryNames);
+      if(categoryNames){
+        res.status(200).send({"categoryNames": categoryNames});
       }else{
         res.status(400).send({"message": "bad request"});
       }

@@ -1,11 +1,12 @@
 const {Note}=require('../schema/Note.js');
 
-function createNote(req, res, next){
+async function createNote(req, res, next){
 
     try{
         const {user, category, sum}=req.body;
         if(user && category && sum){
-            const note=new Note(user, category, sum);
+            const note= await new Note({idUser: user.id, idCategory: category.id, date: JSON.stringify(new Date()), sum: sum});
+            note.save();
             res.status(200).send({"message": "success", "note": note });
         }else{
             res.status(400).json({"message": "bad request"});
@@ -15,18 +16,12 @@ function createNote(req, res, next){
     }
     
 }
-function getCreatedNotes(req, res, next){
+async function getCreatedNotes(req, res, next){
     try{
-        let userId=2;
-      let note1={'id':1, 'idUser':1, 'idCategory':1, 'date': new Date(), 'sum':123};
-      let note2={'id':2, 'idUser':2, 'idCategory':4, 'date': new Date(), 'sum':876};
-      let note3={'id':3, 'idUser':3, 'idCategory':3, 'date': new Date(), 'sum':76};
-      let note4={'id':4, 'idUser':2, 'idCategory':3, 'date': new Date(), 'sum':15};
-      let note5={'id':5, 'idUser':2, 'idCategory':1, 'date': new Date(), 'sum':1023};
-      const notes=[note1, note2, note3, note4, note5];
-      const filteredNotes=notes.filter(el=>el.idUser==userId);
+      const {idUser} = req.body;
+      const notes = await Note.find({idUser: idUser});
       if(notes){
-        res.status(200).send({"notes": filteredNotes});
+        res.status(200).send({"notes": notes});
       }else{
         res.status(400).send({"message": "bad request"});
       }
@@ -36,19 +31,13 @@ function getCreatedNotes(req, res, next){
     }    
 }
 
-function getNotesByCategory(req, res, next){
+async function getNotesByCategory(req, res, next){
     try{
-      let userId=2;
+      const {idUser} = req.body;
       let {categoryId}=req.params;
-      let note1={'id':1, 'idUser':1, 'idCategory':1, 'date': new Date(), 'sum':123};
-      let note2={'id':2, 'idUser':2, 'idCategory':4, 'date': new Date(), 'sum':876};
-      let note3={'id':3, 'idUser':3, 'idCategory':3, 'date': new Date(), 'sum':76};
-      let note4={'id':4, 'idUser':2, 'idCategory':4, 'date': new Date(), 'sum':15};
-      let note5={'id':5, 'idUser':2, 'idCategory':1, 'date': new Date(), 'sum':1023};
-      const notes=[note1, note2, note3, note4, note5];
-      const filteredNotes=notes.filter(el=>el.idUser==userId && el.idCategory==categoryId);
+      const notes = await Note.find({idUser: idUser, idCategory: categoryId});
       if(notes){
-        res.status(200).send({"notes": filteredNotes});
+        res.status(200).send({"notes": notes});
       }else{
         res.status(400).send({"message": "bad request"});
       }

@@ -1,11 +1,12 @@
 const {User}=require('../schema/User.js');
 
-function registerUser(req, res, next){
-
+async function registerUser(req, res, next){
     try{
+
         const {login}=req.body;
         if(login){
-            const user=new User(login);
+            const user= await new User({login});
+            user.save();
             res.status(200).send({"message": "success", "user": user });
         }else{
             res.status(400).json({"message": "bad request"});
