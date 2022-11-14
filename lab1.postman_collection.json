@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "New Request",
+			"name": "Post new user",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -37,7 +37,7 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "Post new category",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -67,7 +67,7 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "Post new note",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -97,7 +97,7 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "Get category names",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -118,7 +118,7 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "Get all notes",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -139,7 +139,7 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "Get notes by category id",
 			"request": {
 				"method": "GET",
 				"header": [],
