@@ -43,7 +43,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"categoryName\": \"Entertainment\"\r\n}",
+					"raw": "{\r\n    \"categoryName\": \"University\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -73,7 +73,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"user\":{\"id\": 1,\r\n    \"login\":\"Nick\"},\r\n    \"category\":{\"id\":3,\r\n    \"categoryName\":\"Medicine\"},\r\n    \"sum\":675\r\n\r\n}",
+					"raw": "{\r\n    \"user\":{\"id\": \"6372bd60fb1454609e6e9b66\",\r\n    \"login\":\"Anna\"},\r\n    \"category\":{\"id\":\"6372cd3634dca192bd16e4cb\",\r\n    \"categoryName\":\"Dog\"},\r\n    \"sum\":90\r\n\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -118,10 +118,22 @@
 			"response": []
 		},
 		{
-			"name": "Get all notes",
+			"name": "Get all user notes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"idUser\": \"6372bd60fb1454609e6e9b66\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "http://{{domain}}/api/users/me/notes",
 					"protocol": "http",
@@ -140,11 +152,23 @@
 		},
 		{
 			"name": "Get notes by category id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idUser\": \"6372bd60fb1454609e6e9b66\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "http://{{domain}}/api/users/me/notes/category/4",
+					"raw": "http://{{domain}}/api/users/me/notes/category/6372cd3634dca192bd16e4cb",
 					"protocol": "http",
 					"host": [
 						"{{domain}}"
@@ -155,7 +179,7 @@
 						"me",
 						"notes",
 						"category",
-						"4"
+						"6372cd3634dca192bd16e4cb"
 					]
 				}
 			},
