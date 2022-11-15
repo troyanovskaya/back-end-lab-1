@@ -1,13 +1,22 @@
 const {Category}=require('../schema/Category.js');
+const assert = require('assert');
 
 async function createCategory(req, res, next){
 
     try{
         const {categoryName}=req.body;
         if(categoryName){
-            const category=await new Category({categoryName});
-            category.save();
-            res.status(200).send({"message": "success", "category": category });
+            Category.init()
+                .then(async()=>{
+                    await Category.create({categoryName});
+                    res.status(200).send({"message": "successfully created", "category": categoryName})})
+                .catch(error => {
+                assert.ok(error);
+                assert.ok(!error.errors);
+                assert.ok(error.message.indexOf('duplicate key error') !== -1);
+                res.status(400).send({"message": "Category name is not unique"});
+            });
+
         }else{
             res.status(400).json({"message": "bad1 request"});
         }        

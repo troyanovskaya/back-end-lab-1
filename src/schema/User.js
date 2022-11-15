@@ -4,7 +4,8 @@ mongoose.connect('mongodb+srv://Ann:fndt75DSk@cluster0.4skxzza.mongodb.net/back-
 const userSchema=mongoose.Schema({
     login:{
       type:String,
-      required:true
+      required:true,
+      unique: true
     }
 });
 const User=mongoose.model('User', userSchema);
