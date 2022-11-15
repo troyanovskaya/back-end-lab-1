@@ -5,9 +5,20 @@ async function createNote(req, res, next){
     try{
         const {user, category, sum}=req.body;
         if(user && category && sum){
-            const note= await new Note({idUser: user.id, idCategory: category.id, date: JSON.stringify(new Date()), sum: sum});
-            note.save();
-            res.status(200).send({"message": "success", "note": note });
+          const note= await new Note({idUser: user.id, idCategory: category.id, date: JSON.stringify(new Date()), sum: sum});
+          Note.init()
+            .then(async()=>{
+                await Note.create(note);
+                res.status(200).send({"message": "successfully created", "note": note})})
+            .catch(error => {
+                // assert.ok(error);
+                // assert.ok(!error.errors);
+                // assert.ok(error.message.indexOf('duplicate key error') !== -1);
+                res.status(400).send({"error": error.message});
+            });
+            
+            // note.save();
+            // res.status(200).send({"message": "success", "note": note });
         }else{
             res.status(400).json({"message": "bad request"});
         }        
