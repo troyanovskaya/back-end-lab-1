@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"login\":\"Anna\"}",
+					"raw": "{\"login\": \"Nick\"}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -43,7 +43,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"categoryName\": \"University\"\r\n}",
+					"raw": "{\r\n    \"categoryName\": \"Medicine\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -73,7 +73,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"user\":{\"id\": \"6372bd60fb1454609e6e9b66\",\r\n    \"login\":\"Anna\"},\r\n    \"category\":{\"id\":\"6372cd3634dca192bd16e4cb\",\r\n    \"categoryName\":\"Dog\"},\r\n    \"sum\":90\r\n\r\n}",
+					"raw": "{\r\n    \"idUser\": \"6374e2985501362038ecf894\",\r\n    \"idCategory\":\"6374e3335501362038ecf89a\",\r\n    \"operationSum\":1\r\n\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -91,6 +91,36 @@
 						"users",
 						"me",
 						"note"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post bank operation",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idUser\": \"6374e2985501362038ecf894\",\r\n    \"operationType\": \"Receipt of funds\",\r\n    \"operationSum\": 10\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{domain}}/api/users/me/bank",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"me",
+						"bank"
 					]
 				}
 			},
@@ -127,7 +157,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"idUser\": \"6372bd60fb1454609e6e9b66\"}",
+					"raw": "{\"idUser\": \"6374e2985501362038ecf894\"}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -160,7 +190,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"idUser\": \"6372bd60fb1454609e6e9b66\"\r\n}",
+					"raw": "{\r\n    \"idUser\": \"6374e2985501362038ecf894\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -168,7 +198,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://{{domain}}/api/users/me/notes/category/6372cd3634dca192bd16e4cb",
+					"raw": "http://{{domain}}/api/users/me/notes/category/6374e3335501362038ecf89a",
 					"protocol": "http",
 					"host": [
 						"{{domain}}"
@@ -179,7 +209,41 @@
 						"me",
 						"notes",
 						"category",
-						"6372cd3634dca192bd16e4cb"
+						"6374e3335501362038ecf89a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get current bank balance",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idUser\": \"6374e2985501362038ecf894\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{domain}}/api/users/me/bank/balance",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"me",
+						"bank",
+						"balance"
 					]
 				}
 			},

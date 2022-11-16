@@ -5,19 +5,22 @@ const bankAccountSchema=mongoose.Schema({
         type:String,
         required:true
     },
-    idNote:{
+    date:{
         type:String,
-        required: false
+        required: true
     },
     operationType:{
       type:String,
       required:true,
-      enum: ['Receipt of funds', 'Withdrawal of funds']
+      enum: {
+            values:['Receipt of funds', 'Withdrawal of funds'],
+            message: "available options are 'Receipt of funds', 'Withdrawal of funds'"
+        }
     },
     operationSum:{
       type:Number,
       required:true,
-      min: [0, 'Sum can only bi positive']
+      min: [0, 'Sum can only be positive']
     },
     currentBalance:{
         type:Number,

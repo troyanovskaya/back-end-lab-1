@@ -7,8 +7,8 @@ async function registerUser(req, res, next){
         if(login){
             User.init()
             .then(async()=>{
-                await User.create({login});
-                res.status(200).send({"message": "successfully created", "user": login})})
+                let user = await User.create({login});
+                res.status(200).send({"message": "successfully created", "user": user})})
             .catch(error => {
                 assert.ok(error);
                 assert.ok(!error.errors);
@@ -16,7 +16,7 @@ async function registerUser(req, res, next){
                 res.status(400).send({"message": "User login is not unique"});
             });
         }else{
-            res.status(400).json({"message": "bad request"});
+            res.status(400).json({"message": "you need to enter login"});
         }        
     }catch(e){
         res.status(500).send({"message": "eternal server error"});

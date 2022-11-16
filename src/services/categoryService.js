@@ -8,8 +8,8 @@ async function createCategory(req, res, next){
         if(categoryName){
             Category.init()
                 .then(async()=>{
-                    await Category.create({categoryName});
-                    res.status(200).send({"message": "successfully created", "category": categoryName})})
+                    let category = await Category.create({categoryName});
+                    res.status(200).send({"message": "successfully created", "category": category})})
                 .catch(error => {
                 assert.ok(error);
                 assert.ok(!error.errors);
@@ -18,7 +18,7 @@ async function createCategory(req, res, next){
             });
 
         }else{
-            res.status(400).json({"message": "bad1 request"});
+            res.status(400).json({"message": "you need to enter categoryName"});
         }        
     }catch(e){
         res.status(500).send({"message": "eternal2 server error"});
@@ -30,8 +30,6 @@ async function getCategoryList(req, res, next){
     try{
       const categories = await Category.find({});
       const categoryNames = categories.map(el => el.categoryName);
-
-      console.log(categoryNames);
       if(categoryNames){
         res.status(200).send({"categoryNames": categoryNames});
       }else{

@@ -13,7 +13,7 @@ const noteSchema=mongoose.Schema({
         type:String,
         required:true
     },
-    sum:{
+    operationSum:{
         type:Number,
         required:true,
         min: [0, 'Sum spent can not be less then 0']
