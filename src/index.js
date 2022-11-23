@@ -14,9 +14,11 @@ app.use('/api/users', userRouter);
 app.use('/api/users', categoryRouter);
 app.use('/api/users', noteRouter);
 app.use('/api/users', bankAccountRouter);
+
+
 const start = async () => {
   try {
-    app.listen(process.env.PORT || port);
+    await app.listen(process.env.PORT || port);
   } catch (err) {
     console.error(`Error on server startup: ${err.message}`);
   }
@@ -26,7 +28,10 @@ start();
 //ERROR HANDLER
 app.use(errorHandler)
 
-function errorHandler (err, req, res) {
-  console.error('err')
-  res.status(500).send({'message': 'Server error'});
+function errorHandler (err, res, req) {
+  // console.log(err);
+  // console.log(req);
+  // console.log(res);
+  console.log(err);
+  res.status(500).send({'message': `method ${err.method} at this url is not implemented`});
 }
